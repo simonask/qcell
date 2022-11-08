@@ -163,6 +163,16 @@ impl<T> QCell<T> {
     pub fn into_inner(self) -> T {
         self.value.into_inner()
     }
+
+    /// Get the ID of the [`QCell`]'s owner.
+    /// 
+    /// This can be used to determine up front if a [`QCell`] is owned by a
+    /// particular [`QCellOwner`] before running into a panic when accessing the
+    /// contents of the cell.
+    #[inline]
+    pub fn owner(&self) -> QCellOwnerID {
+        self.owner
+    }
 }
 
 #[cfg(feature = "alloc")]
